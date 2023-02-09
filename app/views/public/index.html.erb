@@ -29,14 +29,19 @@
     </article>
     <aside class="col-4">
       <h3 class="h5 mb-4">Up and coming Communities</h3>
-      <ul class="list-group">
-        <li class="list-group-item">An item</li>
-        <li class="list-group-item">A second item</li>
-        <li class="list-group-item">A third item</li>
-        <li class="list-group-item">A fourth item</li>
-        <li class="list-group-item">And a fifth one</li>
-      </ul>
-      <%= link_to "View all", "#", class: "btn btn-primary mt-3" %>
+      <% if @communities.size > 0 %>
+        <ul class="list-group">
+          <% @communities.each do |community| %>
+            <li class="list-group-item"><%= link_to community.name, community_path(community), class: "text-decoration-none" %></li>
+          <% end %>
+        </ul>
+        <%= link_to "View all", communities_path, class: "btn btn-primary mt-3" %>
+      <% else %>
+        <p>There are no communities to display.</p>
+        <% if account_signed_in? %>
+          <%= link_to "Create a new community", new_community_path, class: "btn btn-outline-primary" %>
+        <% end %>
+      <% end %>
     </aside>
   </section>
 </div>
