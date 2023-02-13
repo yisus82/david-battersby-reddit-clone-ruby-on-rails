@@ -7,6 +7,7 @@ class CommunitiesController < ApplicationController
   end
 
   def show
+    @posts = @community.posts
   end
 
   def new
@@ -17,9 +18,9 @@ class CommunitiesController < ApplicationController
     @community = Community.new community_values
     @community.account_id = current_account.id
     if @community.save
-      redirect_to  communities_path
+      redirect_to communities_path
     else
-      render :new
+      redirect_to new_community_path
     end
   end
 
