@@ -1,0 +1,16 @@
+<% if posts.size > 0 %>
+  <% posts.each do |post| %>
+    <div class="card p-3 mb-3">
+      <span class="col-sm-2 badge bg-secondary">
+        <%= link_to post.community.name, community_path(post.community), class: "text-white text-decoration-none" %>
+      </span>
+      <%= link_to post.title, community_post_path(post.community_id, post), class: "h4 mt-2" %>
+      <small>
+        <p>Posted by <%= link_to post.account.username, profile_path(post.account.username) %> <%= time_ago_in_words post.created_at %> ago</p>
+      </small>
+      <p><%= truncate post.body, length: 200 %></p>
+    </div>
+  <% end %>
+<% else %>
+  <p>There are no posts to display.</p>
+<% end %>

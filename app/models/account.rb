@@ -6,13 +6,9 @@ class Account < ApplicationRecord
   has_many :communities
   has_many :posts
 
+  validates_presence_of :username, :first_name, :last_name
+
   def full_name
-    if first_name.blank?
-      "#{last_name}"
-    elsif last_name.blank?
-      "#{first_name}"
-    else
-      "#{first_name} #{last_name}"
-    end
+    "#{first_name} #{last_name}"
   end
 end

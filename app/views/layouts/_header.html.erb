@@ -1,6 +1,6 @@
 <header class="container">
   <div class="row">
-    <div class="col-12 pt-3 pb-3 mb-4 border-bottom">
+    <div class="col-12 pt-3">
       <div class="float-end">
         <% if account_signed_in? %>
           <div class="dropdown">
@@ -12,7 +12,7 @@
               <% end %>
             </a>
             <ul class="dropdown-menu" aria-labelledby="dropdownMenuLink">
-              <li><%= link_to "Profile", "#", class: "dropdown-item" %></li>
+              <li><%= link_to "Profile", profile_path(current_account.username), class: "dropdown-item" %></li>
               <li><%= link_to "Settings", edit_account_registration_path, class: "dropdown-item" %></li>
               <li><%= button_to "Sign Out", destroy_account_session_path, method: :delete, class: "dropdown-item" %></li>
             </ul>
